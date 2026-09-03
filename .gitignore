@@ -1,0 +1,11 @@
+# Temporary files
+*.tmp
+*.log
+logs/
+
+# Verification & scratch artifacts
+scratch/
+test_*.py
+verify_dashboard.py
+dashboard_*.png
+docs_preview.png

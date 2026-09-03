@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación & Metodología • Banco BISA USDT Capture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .docs-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s ease;
+    }
+    .back-btn:hover {
+      background: var(--bg-card-hover);
+      transform: translateX(-2px);
+    }
+    .doc-article {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 32px;
+    }
+    .doc-article h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-article h2:first-of-type {
+      margin-top: 0;
+    }
+    .doc-article h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 20px 0 8px;
+    }
+    .doc-article p, .doc-article li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .doc-article ul, .doc-article ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .doc-article strong {
+      color: var(--text-main);
+    }
+    .code-box {
+      background: var(--bg-base);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--primary);
+      overflow-x: auto;
+      margin: 14px 0 20px;
+      line-height: 1.6;
+    }
+    [data-theme="dark"] .code-box {
+      background: #030712;
+      color: #38bdf8;
+    }
+    .note-box {
+      background: rgba(37, 99, 235, 0.06);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+    .note-box p {
+      margin-bottom: 0;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="docs-container">
+    <!-- Top Nav -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <a href="index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        <span id="doc-back-text">Volver al Portal</span>
+      </a>
+
+      <div class="header-controls">
+        <div class="toggle-btn-group">
+          <button class="toggle-option lang-btn active" data-lang="es">ES</button>
+          <button class="toggle-option lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-btn" id="btn-theme-toggle">
+          <span id="theme-toggle-icon"></span>
+          <span id="theme-toggle-label">Claro</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SPANISH CONTENT -->
+    <article class="doc-article" id="content-es">
+      <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--text-main);">
+        Documentación & Guía de Transparencia de Precios
+      </h1>
+      <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 32px;">
+        Manual técnico completo sobre la captura automatizada de tasas USDT de Banco BISA, arquitectura anti-caché, auditoría fotográfica y publicación en GitHub Pages.
+      </p>
+
+      <h2>1. ¿Qué hace este sistema?</h2>
+      <p>
+        Este portal registra diariamente las cotizaciones oficiales de compra y venta de <strong>USDT (Tether)</strong> y la tasa <strong>USDT/USD</strong> publicadas por <strong>Banco BISA S.A.</strong> en Bolivia (<a href="https://www.bisa.com/home" target="_blank" rel="noopener">bisa.com/home</a>).
+      </p>
+      <p>
+        Para garantizar a los clientes una transparencia total, cada captura se almacena en una base de datos histórica inmutable (<code>rates.json</code>) y se acompaña de una <strong>captura de pantalla fotográfica en alta resolución</strong> tomada en el segundo exacto en que la cinta de cotizaciones muestra los valores, con una marca de agua de fecha y hora generada en la página.
+      </p>
+
+      <h2>2. Arquitectura de Captura y Protección Anti-Caché</h2>
+      <p>
+        Banco BISA utiliza sistemas de caché perimetral (CDN Akamai) y enrutamiento SPA (Angular) que en ocasiones pueden retener cotizaciones de días anteriores si no se fuerza una recarga limpia. Nuestra automatización implementa los siguientes protocolos de seguridad:
+      </p>
+      <ul>
+        <li><strong>Entorno 100% Aislado (WSL2 Ubuntu)</strong>: Todas las dependencias (Playwright, Chromium headless y Python) corren dentro de una máquina virtual ligera Linux en <code>~/.virtualenvs/bisa-tracker</code>. Nada se instala de manera global en Windows.</li>
+        <li><strong>Perfiles de Navegador Efímeros</strong>: Cada ejecución a las 11:00 AM inicia una instancia limpia e incógnita sin cookies ni caché residual previo.</li>
+        <li><strong>Cabeceras de Red Estrictas</strong>: Se envían solicitudes HTTP con <code>Cache-Control: no-cache, no-store, must-revalidate</code> y <code>Pragma: no-cache</code>.</li>
+        <li><strong>Recarga Forzada en el DOM</strong>: Antes de extraer los datos, el navegador ejecuta una recarga limpia de la página y valida los componentes en vivo.</li>
+        <li><strong>Detección de la Cinta Animada</strong>: El script supervisa el bucle CSS de 40 segundos de la cinta (<code>.marquee-container</code>). Cuando los elementos de USDT entran completamente en el campo de visión, congela la animación para evitar desenfoque por movimiento y estampa la hora y fecha exacta antes de tomar la captura.</li>
+      </ul>
+
+      <h2>3. Comandos Útiles y Ejecución Manual</h2>
+      <p>Todos los archivos y utilitarios se encuentran en: <code>C:\Users\RuzzBlue\Documents\Dev\bisa-rate-tracker\</code></p>
+      
+      <h3>A. Ejecutar una captura inmediata en cualquier momento</h3>
+      <p>Para ejecutar manualmente y ver la salida en terminal en tiempo real:</p>
+      <div class="code-box">
+        # Doble clic en Windows Explorer o ejecutar en PowerShell:<br>
+        .\run.bat
+      </div>
+
+      <h3>B. Ejecutar silenciosamente en segundo plano</h3>
+      <div class="code-box">
+        # Doble clic en Windows Explorer o ejecutar:<br>
+        wscript.exe .\run_silent.vbs
+      </div>
+
+      <h3>C. Consultar el estado de la tarea programada (11:00 AM)</h3>
+      <p>El sistema se ejecuta automáticamente todos los días a las 11:00 AM. Si la computadora estaba apagada o en suspensión, se ejecutará automáticamente en cuanto se encienda (<code>StartWhenAvailable</code>):</p>
+      <div class="code-box">
+        Get-ScheduledTask -TaskName "BisaRateTrackerDaily" | Select-Object TaskName, State, @{N='NextRun';E={(Get-ScheduledTaskInfo $_).NextRunTime}}
+      </div>
+
+      <h2>4. Publicación en GitHub Pages (Actualización en 1 Clic)</h2>
+      <p>
+        ¿Por qué ejecutamos la captura en tu equipo en lugar de GitHub Actions? Porque Banco BISA cuenta con <strong>Akamai Bot Manager</strong>, el cual bloquea con código HTTP 503 las direcciones IP de servidores en la nube (como GitHub Actions o AWS). Al correr localmente en tu conexión de internet, Akamai lo reconoce como un usuario legítimo al 100%.
+      </p>
+      
+      <h3>Pasos para vincular tu repositorio por primera vez:</h3>
+      <ol>
+        <li>Crea un repositorio en GitHub (ej. <code>bisa-rate-tracker</code>).</li>
+        <li>En PowerShell ejecuta:
+          <div class="code-box">
+            cd C:\Users\RuzzBlue\Documents\Dev\bisa-rate-tracker<br>
+            git init<br>
+            git branch -M main<br>
+            git remote add origin https://github.com/TU_USUARIO/bisa-rate-tracker.git
+          </div>
+        </li>
+        <li>Haz doble clic en <code>push_to_github.bat</code> para subir los archivos.</li>
+        <li>En GitHub, ve a <strong>Settings > Pages</strong>, elige como origen <strong>Deploy from a branch</strong>, selecciona la rama <strong>main</strong> y carpeta <strong>/(root)</strong>, y haz clic en <strong>Save</strong>.</li>
+      </ol>
+
+      <div class="note-box">
+        <p><strong>Actualización para tus clientes:</strong> Cada vez que desees que tus clientes vean las métricas actualizadas, simplemente haz doble clic en <code>push_to_github.bat</code>. El script empaquetará todas las nuevas capturas y datos, los subirá a GitHub y el sitio se actualizará en minutos.</p>
+      </div>
+
+      <h2>5. Estructura de Datos (`rates.json`)</h2>
+      <p>Cada captura añade un objeto con formato JSON:</p>
+      <div class="code-box">
+{<br>
+&nbsp;&nbsp;"id": "2026-09-03_17-20-56",<br>
+&nbsp;&nbsp;"captured_at": "2026-09-03T17:20:56-04:00",<br>
+&nbsp;&nbsp;"date": "2026-09-03",<br>
+&nbsp;&nbsp;"time": "17:20:56",<br>
+&nbsp;&nbsp;"rates": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdts_compra": 11.74,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdts_venta": 12.79,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdt_usd_compra": 1.0<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;"screenshot": "screenshots/bisa_2026-09-03_17-20-56.png"<br>
+}
+      </div>
+    </article>
+
+    <!-- ENGLISH CONTENT -->
+    <article class="doc-article" id="content-en" style="display: none;">
+      <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--text-main);">
+        Documentation & Price Transparency Guide
+      </h1>
+      <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 32px;">
+        Comprehensive technical manual on automated capture of Banco BISA USDT rates, anti-cache architecture, photographic audit trail, and GitHub Pages deployment.
+      </p>
+
+      <h2>1. What does this system do?</h2>
+      <p>
+        This portal automatically records daily official buying and selling exchange rates for <strong>USDT (Tether)</strong> and the <strong>USDT/USD</strong> rate published by <strong>Banco BISA S.A.</strong> in Bolivia (<a href="https://www.bisa.com/home" target="_blank" rel="noopener">bisa.com/home</a>).
+      </p>
+      <p>
+        To ensure complete transparency for customers, every capture is permanently recorded in a structured database (<code>rates.json</code>) and paired with a <strong>high-resolution photographic screenshot</strong> taken the second the ticker ribbon displays the values, watermarked with an on-page date and timestamp.
+      </p>
+
+      <h2>2. Capture Architecture & Anti-Cache Protection</h2>
+      <p>
+        Banco BISA uses edge caching (Akamai CDN) and client-side SPA routing (Angular) that can sometimes serve stale rates from prior days if not properly bypassed. Our automation enforces the following protocols:
+      </p>
+      <ul>
+        <li><strong>100% Isolated Environment (WSL2 Ubuntu)</strong>: All dependencies (Playwright, headless Chromium, and Python) run inside a lightweight Linux virtual environment at <code>~/.virtualenvs/bisa-tracker</code>. Nothing touches your global Windows setup.</li>
+        <li><strong>Ephemeral Browser Sessions</strong>: Each run at 11:00 AM launches a clean incognito profile with zero residual cache or cookies.</li>
+        <li><strong>Strict Cache-Bypass Headers</strong>: HTTP requests explicitly send <code>Cache-Control: no-cache, no-store, must-revalidate</code> and <code>Pragma: no-cache</code>.</li>
+        <li><strong>Forced In-DOM Reload</strong>: Before data extraction, the browser executes a forced page reload and verifies the live DOM.</li>
+        <li><strong>Smart Ribbon Detection</strong>: The automation tracks the 40-second animated marquee loop (<code>.marquee-container</code>). Once USDT rates are fully centered in the viewport, it pauses the animation to eliminate motion blur and stamps the exact date and time before saving the screenshot.</li>
+      </ul>
+
+      <h2>3. Commands Reference & Manual Runs</h2>
+      <p>All project files and utilities are located in: <code>C:\Users\RuzzBlue\Documents\Dev\bisa-rate-tracker\</code></p>
+      
+      <h3>A. Run an immediate capture anytime</h3>
+      <p>To run manually and view live terminal output:</p>
+      <div class="code-box">
+        # Double click in Windows Explorer or execute in PowerShell:<br>
+        .\run.bat
+      </div>
+
+      <h3>B. Run silently in background</h3>
+      <div class="code-box">
+        # Double click in Windows Explorer or execute:<br>
+        wscript.exe .\run_silent.vbs
+      </div>
+
+      <h3>C. Check Scheduled Task status (Daily 11:00 AM)</h3>
+      <p>Runs automatically every day at 11:00 AM. If the computer is off or asleep, it runs immediately upon wake-up (<code>StartWhenAvailable</code>):</p>
+      <div class="code-box">
+        Get-ScheduledTask -TaskName "BisaRateTrackerDaily" | Select-Object TaskName, State, @{N='NextRun';E={(Get-ScheduledTaskInfo $_).NextRunTime}}
+      </div>
+
+      <h2>4. Publishing to GitHub Pages (1-Click Update)</h2>
+      <p>
+        Why run the capture locally instead of on GitHub Actions? Banco BISA is protected by <strong>Akamai Bot Manager</strong>, which blocks cloud datacenter IP ranges (such as GitHub Actions or AWS) with an HTTP 503 error. By running locally on your home/office connection, Akamai recognizes it as an authentic user.
+      </p>
+      
+      <h3>Initial Repository Setup:</h3>
+      <ol>
+        <li>Create a repository on GitHub (e.g. <code>bisa-rate-tracker</code>).</li>
+        <li>In PowerShell run:
+          <div class="code-box">
+            cd C:\Users\RuzzBlue\Documents\Dev\bisa-rate-tracker<br>
+            git init<br>
+            git branch -M main<br>
+            git remote add origin https://github.com/YOUR_USERNAME/bisa-rate-tracker.git
+          </div>
+        </li>
+        <li>Double-click <code>push_to_github.bat</code> to push files.</li>
+        <li>In GitHub, go to <strong>Settings > Pages</strong>, set Source to <strong>Deploy from a branch</strong>, choose <strong>main</strong> branch and <strong>/(root)</strong>, and click <strong>Save</strong>.</li>
+      </ol>
+
+      <div class="note-box">
+        <p><strong>Customer Updates:</strong> Whenever you want to publish updated metrics to your clients, simply double-click <code>push_to_github.bat</code>. It stages all new data and screenshots and pushes to GitHub within seconds.</p>
+      </div>
+
+      <h2>5. Data Structure (`rates.json`)</h2>
+      <p>Each execution appends a structured record:</p>
+      <div class="code-box">
+{<br>
+&nbsp;&nbsp;"id": "2026-09-03_17-20-56",<br>
+&nbsp;&nbsp;"captured_at": "2026-09-03T17:20:56-04:00",<br>
+&nbsp;&nbsp;"date": "2026-09-03",<br>
+&nbsp;&nbsp;"time": "17:20:56",<br>
+&nbsp;&nbsp;"rates": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdts_compra": 11.74,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdts_venta": 12.79,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"usdt_usd_compra": 1.0<br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;"screenshot": "screenshots/bisa_2026-09-03_17-20-56.png"<br>
+}
+      </div>
+    </article>
+  </div>
+
+  <script>
+    // Theme & Language synchronization with main dashboard
+    let docLang = localStorage.getItem('bisa_lang') || (navigator.language?.startsWith('es') ? 'es' : 'en');
+    let docTheme = localStorage.getItem('bisa_theme') || 'light';
+
+    function applyDocTheme() {
+      document.documentElement.setAttribute('data-theme', docTheme);
+      const label = document.getElementById('theme-toggle-label');
+      const icon = document.getElementById('theme-toggle-icon');
+      if (label) label.textContent = (docTheme === 'light') ? (docLang === 'es' ? 'Claro' : 'Light') : (docLang === 'es' ? 'Oscuro' : 'Dark');
+      if (icon) {
+        if (docTheme === 'light') {
+          icon.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+        } else {
+          icon.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+        }
+      }
+    }
+
+    function applyDocLang() {
+      document.getElementById('content-es').style.display = (docLang === 'es') ? 'block' : 'none';
+      document.getElementById('content-en').style.display = (docLang === 'en') ? 'block' : 'none';
+      document.getElementById('doc-back-text').textContent = (docLang === 'es') ? 'Volver al Portal' : 'Back to Portal';
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === docLang);
+      });
+      applyDocTheme();
+    }
+
+    document.getElementById('btn-theme-toggle')?.addEventListener('click', () => {
+      docTheme = (docTheme === 'light') ? 'dark' : 'light';
+      localStorage.setItem('bisa_theme', docTheme);
+      applyDocTheme();
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        docLang = e.currentTarget.dataset.lang;
+        localStorage.setItem('bisa_lang', docLang);
+        applyDocLang();
+      });
+    });
+
+    applyDocLang();
+  </script>
+</body>
+</html>
